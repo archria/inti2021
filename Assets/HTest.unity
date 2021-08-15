@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 500693337}
   - component: {fileID: 500693336}
   - component: {fileID: 500693335}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: H_Platform
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -1993,7 +1993,7 @@ GameObject:
   - component: {fileID: 1629682078}
   - component: {fileID: 1629682083}
   - component: {fileID: 1629682084}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2047,7 +2047,7 @@ Animator:
   m_GameObject: {fileID: 1629682077}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ecb42ad7d6327b4fbf2939899c41d9d, type: 2}
+  m_Controller: {fileID: 9100000, guid: acf463949f5aca544aba75aea0a5d6a4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
