@@ -48,12 +48,13 @@ public class LPlayerMove : MonoBehaviour
         if(Input.GetButton("Horizontal"))
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1; // 왼쪽일때 flip x
         
-        //Animation
+        //Walking animation 
         if(Mathf.Abs( rigid.velocity.x ) < 0.3)
             anim.SetBool("isWalking", false);
         else
             anim.SetBool("isWalking", true);
         
+        //wall sticking scan code
         if(true){
             Debug.DrawRay(rigid.position, Vector3.right * Mathf.Abs(Input.GetAxisRaw("Horizontal")) , new Color(0,1,0));
             RaycastHit2D rayHitright = Physics2D.Raycast(rigid.position, Vector3.right, 1, LayerMask.GetMask("Platform"));
@@ -65,6 +66,30 @@ public class LPlayerMove : MonoBehaviour
             }
             else
                 anim.SetBool("isWallStick",false);
+        }
+
+
+        //slowing at sticking wall
+        if(anim.GetBool("isWallStick")){
+            rigid.gravityScale = 0.5f;
+        }
+        else{
+            rigid.gravityScale = 1;
+        }
+
+        //landing scanning code
+        if(true){
+            Debug.DrawRay(rigid.position, Vector3.down, new Color(0,1,0));
+            RaycastHit2D rayHitDown = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
+            if(rayHitDown.collider != null){
+                if(rayHitDown.distance < 0.5f){
+                    anim.SetBool("isJumping", false);
+                    anim.SetBool("isWallJumping",false);
+                    //Debug.Log("grounded");
+                }
+                
+            }
+            //Debug.Log(rayHit.collider.name);
         }
 
         
@@ -87,26 +112,6 @@ public class LPlayerMove : MonoBehaviour
         else if (rigid.velocity.x < maxSpeed * (-1)) // left max speed
             rigid.velocity = new Vector2(maxSpeed * (-1) ,rigid.velocity.y);
 
-        //Landing Platform
-        if(true){
-            Debug.DrawRay(rigid.position, Vector3.down, new Color(0,1,0));
-            RaycastHit2D rayHitDown = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
-            if(rayHitDown.collider != null){
-                if(rayHitDown.distance < 0.5f){
-                    anim.SetBool("isJumping", false);
-                    anim.SetBool("isWallJumping",false);
-                }
-                
-            }
-            //Debug.Log(rayHit.collider.name);
-        }
-        
-        
-        //wall jump
-
-        
-        
-        // master branch testing
         
     }
 }
