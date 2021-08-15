@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 131414431}
   - component: {fileID: 131414430}
   - component: {fileID: 131414432}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LPlatform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1860,11 +1860,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174866237}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 284835990}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284835988
@@ -1949,9 +1949,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.38, y: 2.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 174866240}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &284835991
 CapsuleCollider2D:
@@ -1967,7 +1968,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.1}
-  m_Size: {x: 0.8, y: 0.9}
+  m_Size: {x: 0.8, y: 0.7}
   m_Direction: 0
 --- !u!95 &284835992
 Animator:
@@ -2001,7 +2002,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -2021,8 +2022,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4334dc95862bc044684acfd9e80d0054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 8
+  maxSpeed: 6
+  counterJumpPower: 15
   jumpPower: 5
+  frontCheck: {fileID: 0}
 --- !u!1 &1023562095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,7 +2069,7 @@ Transform:
   - {fileID: 131414429}
   - {fileID: 1984893054}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1984893053
 GameObject:
@@ -2079,7 +2082,7 @@ GameObject:
   - component: {fileID: 1984893054}
   - component: {fileID: 1984893056}
   - component: {fileID: 1984893055}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LSpike
   m_TagString: Untagged
   m_Icon: {fileID: 0}

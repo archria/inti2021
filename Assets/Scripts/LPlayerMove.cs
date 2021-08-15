@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class LPlayerMove : MonoBehaviour
 {
     // Start is called before the first frame update
     public float maxSpeed;
@@ -35,6 +35,10 @@ public class PlayerMove : MonoBehaviour
         if(Input.GetButtonDown("Jump") && anim.GetBool("isWallStick")){
             rigid.AddForce(Vector2.left * counterJumpPower, ForceMode2D.Impulse);
             rigid.AddForce(Vector2.up* jumpPower, ForceMode2D.Impulse);
+            anim.SetBool("isWallJumping",true);
+        }
+        if(rigid.velocity.x == 0 && anim.GetBool("isWallJumping")){
+            anim.SetBool("isWallJumping",false);
         }
 
         //Stop speed
@@ -53,7 +57,9 @@ public class PlayerMove : MonoBehaviour
         if(true){
             Debug.DrawRay(rigid.position, Vector3.right * Mathf.Abs(Input.GetAxisRaw("Horizontal")) , new Color(0,1,0));
             RaycastHit2D rayHitright = Physics2D.Raycast(rigid.position, Vector3.right, 1, LayerMask.GetMask("Platform"));
-            if(rayHitright.collider != null && rayHitright.distance < 0.5f){
+            RaycastHit2D rayHitleft = Physics2D.Raycast(rigid.position, Vector3.left, 1, LayerMask.GetMask("Platform"));
+            if(rayHitright.collider != null && rayHitright.distance < 0.5f || 
+                rayHitleft.collider != null && rayHitleft.distance < 0.5f ){
                 Debug.Log("wall sticking");
                 anim.SetBool("isWallStick", true);
             }
@@ -82,12 +88,13 @@ public class PlayerMove : MonoBehaviour
             rigid.velocity = new Vector2(maxSpeed * (-1) ,rigid.velocity.y);
 
         //Landing Platform
-        if(rigid.velocity.y < 0){
+        if(true){
             Debug.DrawRay(rigid.position, Vector3.down, new Color(0,1,0));
             RaycastHit2D rayHitDown = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
             if(rayHitDown.collider != null){
                 if(rayHitDown.distance < 0.5f){
                     anim.SetBool("isJumping", false);
+                    anim.SetBool("isWallJumping",false);
             }
             //Debug.Log(rayHit.collider.name);
         }
