@@ -95,6 +95,8 @@ public class LPlayerMove : MonoBehaviour
                 if(rayHitDown.distance < 0.5f){
                     anim.SetBool("isJumping", false);
                     anim.SetBool("isWallJumping",false);
+                }
+                
             }
             //Debug.Log(rayHit.collider.name);
         }
@@ -102,7 +104,7 @@ public class LPlayerMove : MonoBehaviour
         
         //wall jump
 
-        }
+        
         
         // master branch testing
         
